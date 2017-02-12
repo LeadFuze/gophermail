@@ -44,7 +44,7 @@ func Test_Bytes(t *testing.T) {
 
 func TestSubjectHeaderWithSimpleQuoting(t *testing.T) {
 	m := simpleMessage()
-	m.Subject = "My Subject"
+	m.Subject = "My \"Sub\"ject"
 	buf := new(bytes.Buffer)
 	header := textproto.MIMEHeader{}
 
@@ -54,7 +54,7 @@ func TestSubjectHeaderWithSimpleQuoting(t *testing.T) {
 		t.Fail()
 	}
 
-	expected := "My Subject"
+	expected := "My \"Sub\"ject"
 	if sub := header.Get("Subject"); sub != expected {
 		t.Logf(`Expected Subject to be "%s" but got "%s"`, expected, sub)
 		t.Fail()
